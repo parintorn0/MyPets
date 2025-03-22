@@ -1,0 +1,49 @@
+@model MyPets.Models.MyPetsViewModel
+@{
+    ViewData["Title"] = "Edit Pet";
+    var source= TempData["Source"]?.ToString();
+    var photoFilePath = TempData["PhotoFilePath"]?.ToString();
+    if(photoFilePath=="/images/"){
+        photoFilePath="/images/nodata.png";
+    }
+}
+<h1>Edit</h1>
+<h4>@ViewData["Title"]</h4>
+<form enctype="multipart/form-data" method="post" asp-controller="Pet" asp-action="Edit" class="w-75 mx-auto">
+    <div class="mb-3">
+        <label for="Id" class="form-label">Id</label>
+        <input type="text" class="form-control" id="Id" asp-for="Id" readonly />
+    </div>
+    <div class="mb-3">
+        <label for="PetName" class="form-label">Please enter Pet's Name</label>
+        <input type="text" class="form-control" id="PetName" asp-for="PetName" />
+    </div>
+    <div class="mb-3">
+        <label for="Gender" class="form-label">Please enter Pet's Gender</label>
+        <div class="col-sm-9">
+            <select class="form-select" asp-for="Gender">
+                <option value="Unknown">Unknown</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div> 
+    </div>
+    <div class="mb-3">
+        <label for="DateOfBirth" class="form-label">Date Of Birth: @Model.DateOfBirth</label>
+        <input type="date" class="form-control" id="DateOfBirth" asp-for="DateOfBirth" />
+    </div>
+    <div class="mb-3">
+        <label for="PhotoFileName" class="form-label">Current Image: @photoFilePath</label>
+        <input type="text" class="form-control" id="PhotoFileName" asp-for="PhotoFileName" readonly>
+        <img src="@photoFilePath" width="120"/>
+    </div>
+    <div class="mb-3">
+        <label for="Image" class="form-label">Please update Image:</label>
+        <input type="file" class="form-control" name="PhotoFileName" id="PhotoFileName"/>
+    </div>
+    <div class="mb-3">
+        <input type="Submit" class="btn btn-info mx-auto d-inline" value="Save" />
+        <input type="button" class="btn btn-primary mx-auto d-inline" action="action"
+            onclick="window.location.href='/Pet'" value="Cancel" />
+    </div>
+</form>

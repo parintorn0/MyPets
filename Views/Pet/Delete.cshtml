@@ -1,0 +1,39 @@
+@model MyPets.Models.MyPetsViewModel
+@{
+    ViewData["Title"] = "Delete My Pet";
+    // var source = TempData["Source"]?.ToString();
+    var photoFilePath = TempData["PhotoFilePath"]?.ToString();
+    if(photoFilePath=="/images/"){
+        photoFilePath="/images/nodata.png";
+    }
+}
+<h1>Delete</h1>
+<h4>@ViewData["Title"]</h4>
+<form method="post" class="w-75 mx-auto">
+    <div class="mb-3">
+        <label for="Id" class="form-label">Pet's Id</label>
+        <input type="text" class="form-control" id="Id" asp-for="Id" readonly />
+    </div>
+    <div class="mb-3">
+        <label for="PetName" class="form-label">Pet's Name</label>
+        <input type="text" class="form-control" id="PetName" asp-for="PetName" readonly />
+    </div>
+    <div class="mb-3">
+        <label for="Gender" class="form-label">Pet's Gender</label>
+        <input type="text" class="form-control" id="Gender" asp-for="Gender" readonly />
+    </div>
+    <div class="mb-3">
+        <label for="DateOfBirth" class="form-label">Date Of Birth: @Model.DateOfBirth</label>
+        <input type="date" class="form-control" id="DateOfBirth" asp-for="DateOfBirth" readonly />
+    </div>
+    <div class="mb-3">
+        <label for="PhotoFileName" class="form-label">Photo File Name: </label>
+        <input type="text" class="form-control" id="PhotoFileName" asp-for="PhotoFileName" readonly>
+        <img src="@photoFilePath" width="120"/>
+    </div>
+    <div class="mb-3">
+        <input type="Submit" class="btn btn-danger mx-auto d-inline" value="Delete" />
+        <input type="button" class="btn btn-primary mx-auto d-inline" action="action"
+            onclick="window.location.href='/Pet'" value="Cancel" />
+    </div>
+</form>

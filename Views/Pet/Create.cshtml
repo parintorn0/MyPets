@@ -1,0 +1,36 @@
+@model MyPets.Models.MyPetsViewModel
+@{
+    ViewData["Title"] = "Add Pet";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form enctype="multipart/form-data" method="post" asp-controller="Pet   " asp-action="Create" class="w-75 mx-auto">
+    <div class="mb-3">
+        <label for="PetName" class="form-label">Please enter Pet's Name:</label>
+        <input type="text" class="form-control" id="PetName" asp-for="PetName" />
+    </div>
+    <div class="mb-3">
+        <label for="Gender" class="form-label">Please enter Gender:</label>
+        <div class="col-sm-9">
+            <select class="form-select" asp-for="Gender">
+                <option value="Unknown">Unknown</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div> 
+    </div>
+    <div class="mb-3">
+        <label for="DateOfBirth" class="form-label">Please enter Date of Birth:</label>
+        <input type="date" class="form-control" id="DateOfBirth" asp-for="DateOfBirth" />
+    </div>
+    <div class="mb-3">
+        <label for="Photo" class="form-label">Please upload Image:</label>
+        <input type="file" class="form-control" name="ImageFile" id="ImageFileName"/>
+    </div>
+    <div class="mb-3">
+        <input type="submit" class="btn btn-info mx-auto d-inline" value="Add" />
+        <input type="button" class="btn btn-primary mx-auto d-inline" action="action"
+            onclick="window.location.href='/Pet'" value="Cancel" />
+    </div>
+</form>
